@@ -1,1 +1,1 @@
-[README](https://github.com/dmparrishphd/beyondDivineProportions-CORW#readme).
+[README](https://github.com/dmparrishphd/beyondDivineProportions-CORW/blob/main/README.md)
