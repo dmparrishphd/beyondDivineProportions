@@ -1,2 +1,1 @@
-# beyondDivineProportions
-notes on super-rational computational geometry
+[README](https://github.com/dmparrishphd/beyondDivineProportions-CORW).
