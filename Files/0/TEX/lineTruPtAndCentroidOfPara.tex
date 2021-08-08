@@ -1,0 +1,45 @@
+\documentclass{article}
+\title{Line through a Point and\\ the Centroid of a\\ P-Parallelogram}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+\noindent
+Consider $x_k, y_k \in \mathbf{Q}$.
+Provided that quadrilateral
+\[
+P \equiv ([x_1, y_1], [x_2, y_2], [x_3, y_3], [x_4, y_4])
+\]
+is a parallelogram, the centroid of $P$ is\footnote{Recall
+that the centroid of the parallelogram is the centroid of the diagonals.}
+\[
+C_P =
+\left[ \frac{x_{13}}{2}, \frac{y_{13}}{2} \right] =
+\left[ \frac{x_{24}}{2}, \frac{y_{24}}{2} \right] .
+\]
+where
+$x_{13} \equiv x_1 + x_3,\ y_{13} \equiv y_1 + y_3,\
+x_{24} \equiv x_2 + x_4,\ y_{24} \equiv y_2 + y_4$.
+
+Provided that $C_P \ne [x_5, y_5] = R$,
+the line $l_{PR}$ passing through $C_P$ and $R$ is
+\[
+\mathrm{vec}(
+\frac{x_{13}}{2} y_5 - x_5 \frac{y_{13}}{2}\
+\phantom{-}\ \frac{y_{13}}{2} - y_5\
+\phantom{-}\ x_5 - \frac{x_{13}}{2}
+)
+\cdot
+\mathrm{vec}(1\ x\ y)=0
+\]
+or\footnote{If
+$x_k, y_k \in \mathbf{Z}$,
+all elements of the left matrix are in $\mathbf{Z}$.}
+\[
+\mathrm{vec}(
+x_{13}y_{5} - x_{5}y_{13}
+\phantom{-}\ 2 y_{13} - y_{5}
+\phantom{-}\ 2 x_{5} - x_{13}
+)
+\cdot \mathrm{vec}(1\ x\ y)=0
+\]
+\end{document}

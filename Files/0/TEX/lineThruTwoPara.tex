@@ -1,0 +1,49 @@
+\documentclass{article}
+\title{Line through\\ the Centroids of\\ Two P-Parallelograms}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+\newcommand{\en}{\phantom{N}}
+\noindent
+Let
+$P = \mathrm{ppara}(
+\mathrm{point}(x_1\en y_1)\
+\mathrm{point}(x_2\en y_2)\
+\mathrm{point}(x_3\en y_3)\
+\mathrm{point}(x_4\en y_4))$.
+Let\footnote{Recall
+that the centroid of a parallelogram is the midpoint of either diagonal.}
+\[
+2C_P =
+\mathrm{vec}(x_{13}\en y_{13}) = 
+\mathrm{vec}(x_{24}\en y_{24}).
+\]
+where
+$x_{13} \equiv x_1 + x_3,\ y_{13} \equiv y_1 + y_3,\
+x_{24} \equiv x_2 + x_4,\ y_{24} \equiv y_2 + y_4$.
+Similarly, let
+$R = \mathrm{ppara}(
+\mathrm{point}(x_5\en y_5)\
+\mathrm{point}(x_6\en y_6)\
+\mathrm{point}(x_7\en y_7)\
+\mathrm{point}(x_8\en y_8))$.
+Let
+\[
+2C_R =
+\mathrm{vec}(x_{57}\en y_{57}) =
+\mathrm{vec}(x_{68}\en y_{68}).
+\]
+where
+$x_{57} \equiv x_5 + x_7,\ y_{57} \equiv y_5 + y_7,\
+x_{68} \equiv x_6 + x_8,\ y_{68} \equiv y_6 + y_8$.
+
+Provided that $C_P \ne C_R$,
+the line through the centroids of $P$ and $R$ satisfies
+$$\mathrm{vec}(
+x_{13}y_{57}-x_{57}y_{13}\en
+2y_{13}-2y_{57}\en
+2x_{57}-2x_{13})
+\cdot
+\mathrm{vec}(1\ x\ y)
+$$
+\end{document}

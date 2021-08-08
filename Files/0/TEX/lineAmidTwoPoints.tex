@@ -1,0 +1,43 @@
+\documentclass{article}
+\title{Line Amid Two Points}
+\begin{document}
+\newcommand{\en}{\phantom{N}}
+\maketitle
+\section{Definition of ``Amid''}
+The follwing defines ``amid'' with respect to a line and two points.
+In particular, the existence of a centroid of the two points plays no role.
+$$l\equiv \mathrm{line}(c\ a\ b), 0<a^2+b^2$$
+\en\\
+$$v\equiv \mathrm{vec\ list}\ l$$
+\en\\
+$$p_1\equiv \mathrm{point}(x_1\en y_1)$$
+$$p_2\equiv \mathrm{point}(x_2\en y_2)$$
+\en\\
+$$u_1\equiv \mathrm{vec}(1\en x_1\en y_1)$$
+$$u_2\equiv \mathrm{vec}(1\en x_2\en y_2)$$
+\en\\
+$$k_1\equiv v\cdot u_1$$
+$$k_2\equiv v\cdot u_2$$
+\en\\
+line $l$ is ``amid'' points $p_1$ and $p_2\Leftrightarrow k_1=-k_2$.
+\newpage
+\section{Line Amid Two Points}
+The line $l, \mathrm{line}(-ax_1-ax_2-by_1-by_2\en 2a\en2b), 0<a^2+b^2$ is amid
+$\mathrm{point}(x_1\en y_1)$ and
+$\mathrm{point}(x_2\en y_2)$.
+
+\paragraph{Proof.}
+Let $k_1=$
+$$\mathrm{vec}(-ax_1-ax_2-by_1-by_2\en 2a\en2b)\cdot \mathrm{vec}(1\en x_1\en y_1)$$
+$$=$$
+$$-ax_1-ax_2-by_1-by_2+2ax_1+2by_1$$
+$$=$$
+$$ax_1-ax_2+by_1-by_2$$
+And let $k_2=$
+$$\mathrm{vec}(-ax_1-ax_2-by_1-by_2\en 2a\en2b)\cdot \mathrm{vec}(1\en x_2\en y_2)$$
+$$=$$
+$$-ax_1-ax_2-by_1-by_2+2ax_2+2by_2$$
+$$=$$
+$$-ax_1+ax_2-by_1+by_2$$
+$k_1=-k_2$. \textsc{qed}
+\end{document}

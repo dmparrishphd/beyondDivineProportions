@@ -1,0 +1,450 @@
+\documentclass{article}
+\title{Storage Requirements}
+\begin{document}
+\newcommand{\en}{\phantom{N}}
+\maketitle
+\noindent
+\textsc{This article}
+establishes storage requirements for the structures
+\begin{itemize}
+\item point
+\item line
+\item quadrance\footnote{Quadrance can be thought of as the square of distance.} between points
+\end{itemize}
+\section{Notation}
+\subsection{The Symbol $N$}
+Unless otherwise specified, the symbol $N$ represents an
+arbitrary---constant---power of two.
+A secondary aim of this article is to establish additional bands,
+if not constraints, on $N$.
+
+\subsection{The Symbols $a$--$z$}
+Unless otherwise specified, the symbols
+$$a\ b\ c\ d\ e\ f\ g\ h\ i\ j\ k\ l\ m\ n\ o\ p\ q\ r\ s\ t\ u\ v\ w\ x\ y\ z$$
+each represent an arbitrary integer.
+
+\subsection{Concatenation and the Symbol $\times$}
+$$ab \equiv a\times b$$
+That is,
+the expression $ab$,
+where the symbols $a$ and $b$ are concatenated,
+has the same meaning as the expression $a\times b$.
+
+If both $a$ and $b$ are integers, $ab$ is the product of $a$ and $b$.
+
+For example, if $a=6$ and $b=7$, $ab=a\times b=6\times 7=42$.
+\subsection{Whitespace and Lists}
+Two or more operands separated by whitespace form a list.
+The expression
+$$a\ b$$
+denotes a list containing the items $a$ and $b$---in that order.
+Blank lines distingish the above list from what is not the list.
+
+Lists may be preceeded by an open parenthesis and proceeded by
+a close parenthesis, indicating the boundaries of the list.
+For example,
+$$()\ (a)\ (a\ b)$$
+denotes a list of three items: an empty list, a list of one item, and list of two items.
+\section{Cardinality of a List}
+The cardinality of a list is the number of items in that list.
+The cardinality operator is $\#$.
+For example:
+$$\#()=0$$
+$$\#(0\ 0\ 0\ 0\ 0\ 0\ 0\ 0\ 0)=9$$
+$$\#(f\ o\ u\ r)=4$$
+
+\section{List Items}
+
+Let $l$ be a list.
+Provided that $0<k\le \#l$,
+$l_k$ is the $k$\textsuperscript{th} item of $l$.
+For example, $(11\ 12\ 13)_2=12$.
+
+\section{Types of Lists}
+
+A list may be declared to be of a certain type using a ``type name.''
+Operations on particular types of lists may be defined.
+
+\section{Vectors}
+
+Let ``vector'' be a type name. Let
+$$\mathrm{vec} = \mathrm{vector}$$
+then the expression
+$$\mathrm{vec}(a\ b)$$
+
+\noindent
+denotes a vector (i.e., a list of type vector).
+
+\section{Untyped Lists}
+
+We might wish to define a list in terms of a typed list:
+$$\mathrm{list}\ t(a\ b) = (a\ b)$$
+
+\noindent
+where $t$ is a type name. For example,
+$$\mathrm{list}\ \mathrm{vec} (a\ b) = (a\ b)$$
+
+\section{Max and Mix}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The ``max'' of a list of integers is
+an integer among the list items whose value is
+not less than any other integer in the list.
+Similarly,
+The ``min'' of a list of integers is
+an integer among the list items whose value is
+not greater than any other integer in the list.
+For example:
+$$\mathrm{max}(0\ 1)=1$$
+$$\mathrm{max}(0\ 0\ 0\ 0\ 0\ 0\ 0\ 0\ 0)=0$$
+$$\mathrm{min}(0\ 1)=0$$
+$$\mathrm{min}(0\ 0\ 0\ 0\ 0\ 0\ 0\ 0\ 0)=0$$
+
+\section{Dot Product of Two Vectors}
+
+Let the symbol $\cdot$ denote the binary operation ``dot product.''
+$$\mathrm{vec}\ u \cdot \mathrm{vec}\ v
+\equiv
+\sum^n_{i=1}
+u_i v_i$$
+where $u$ and $v$ are lists of integers, $0<\#u=\#v=n$.
+For example,
+$$\mathrm{vec}\ (2\ 3)\cdot\mathrm{vec}\ (5\ 7)=2\times 5+3\times 7=10+21=31$$
+
+\section{Intervals}
+
+Let ``interval'' be a type name.
+Let $\mathrm{itv}=\mathrm{interval}$. Provided that $a\le b$,
+$$k\in \mathrm{itv}\ (a\ b) \Leftrightarrow a \le k \le b$$
+$$n\not\in \mathrm{itv}\ (a\ b) \Leftrightarrow n<a \vee b<n$$
+
+\noindent
+In other words, $\mathrm{itv}\ (a\ b)$ indicates an arbitrary integer $k$,
+between $a$ and $b$ inclusive.
+And $n$ represents an arbitrary integer
+beyond $\mathrm{itv}\ (a\ b)$.
+
+For example,
+$$\mathrm{itv}\ (0\ 1)$$
+represents an unknown integer that could be either $0$ or $1$,
+and that can be only $0$ or $1$.
+
+\subsection{Intervals in Intervals}
+
+$$\mathrm{itv}\ (a\ b)\in \mathrm{itv}\ (c\ d)\Leftrightarrow a\in \mathrm{itv}\ (c\ d)\wedge b\in \mathrm{itv}\ (c\ d)$$
+In other words, $\mathrm{itv}\ (a\ b)$ is in $\mathrm{itv}\ (c\ d)$
+if and only if
+$c\le a\le d$ and
+$c\le b\le d$.
+For example,
+$$\mathrm{itv}\ (1-2^{60}\en 2^{60}-1)\in \mathrm{itv}\ (1-2^{61}\en 2^{61}-1)$$
+
+\subsection{Special Intervals}
+
+\newcommand{\NO}{\mathbf{N_0}}
+\newcommand{\NI}{\mathbf{N_1}}
+\newcommand{\NII}{\mathbf{N_2}}
+\newcommand{\NIII}{\mathbf{N_3}}
+\newcommand{\NK}{\mathbf{N_k}}
+
+\newcommand{\NN}{\mathbf{N_0^2}}
+\newcommand{\NNI}{\mathbf{N_1^2}}
+\newcommand{\NNII}{\mathbf{N_2^2}}
+\newcommand{\NNK}{\mathbf{N_k^2}}
+
+$$\NO\equiv \mathrm{itv}(1-N\en N-1)$$
+$$\NI\equiv \mathrm{itv}(1-2N\en 2N-1)$$
+$$\NII\equiv \mathrm{itv}(1-4N\en 4N-1)$$
+$$\NK\equiv \mathrm{itv}(1-2^kN\en 2^kN-1)$$
+
+$$\NN\equiv \mathrm{itv}(1-N^2\en N^2-1)$$
+$$\NNI\equiv \mathrm{itv}(1-2N^2\en 2N^2-1)$$
+$$\NNII\equiv \mathrm{itv}(1-4N^2\en 4N^2-1)$$
+$$\NNK\equiv \mathrm{itv}(1-2^kN^2\en 2^kN^2-1)$$
+
+\subsection{Interval Addition}
+
+$$\mathrm{itv}(a\ b) + \mathrm{itv}(c\ d) \equiv
+\mathrm{itv}(a+c\phantom{N}b+d)$$
+\noindent
+In particular,
+$$\NO+\NO\in\NI$$
+since
+$$\NO+\NO=\mathrm{itv}(1-N\en N-1) + \mathrm{itv}(1-N\en N-1)$$
+$$=$$
+$$\mathrm{itv}(2-2N\en 2N-2)\in
+\mathbf{N_1}$$
+
+\subsection{Interval Subtraction}
+
+$$\mathrm{itv}(a\ b) - \mathrm{itv}(c\ d) \equiv
+\mathrm{itv}(a-d\en b-c)$$
+In particular,
+$$\NO-\NO\in\NI$$
+since
+$$\NO-\NO=\mathrm{itv}(1-N\en N-1) - \mathrm{itv}(1-N\en N-1)$$
+$$=$$
+$$\mathrm{itv}(2-2N\en 2N-2)\in
+\mathbf{N_1}$$
+
+\subsection{Interval Multiplication}
+
+$$\mathrm{itv}(a\ b) \times \mathrm{itv}(c\ d) \equiv
+\mathrm{itv}(\mathrm{min}\ l\en \mathrm{max}\ l)$$
+where $l=(ac\ ad\ bc\ bd)$.
+In particular,
+$$\NO\times\NO\in\NN$$
+since
+$$\NO\times\NO=\mathrm{itv}(1-N\en N-1) \times \mathrm{itv}(1-N\en N-1)$$
+$$=$$
+$$\mathrm{itv}(-N^2+2N-1\en N^2-2N+1)\in
+\mathrm{itv}(1-N^2\en N^2-1)\in\NN$$
+
+\section{Points}
+
+Let ``point'' be a type name.
+
+Unless otherwise specified,
+$$\#\ \mathrm{list}\ p = 2$$
+where $p$ is a point. I.e., points are two-dimensional.
+
+For $\mathrm{point}(a\ b)$,
+
+$$a\in \NO, b\in \NO$$
+
+\noindent
+In other words, each coordinate value,
+$a$ and $b$ is taken from a finite range of integers between
+$1-N$ and $N-1$.
+
+\section{Definition of Vector Quadrance}
+
+Let $\mathrm{q} = \mathrm{quadrance}$, a unary operator.
+The quadrance of a vector $v$ of integers is the integer:
+$$\mathrm{q}v\equiv v\cdot v$$
+
+\noindent
+In particular,
+$\mathrm{q}\ \mathrm{vec}(a\ b)=
+\mathrm{vec}(a\ b)\cdot
+\mathrm{vec}(a\ b)$.
+And, provided that $a, b\in\NO$:
+$$\mathrm{q\ vec(a\ b)}\in \NO\NO+\NO\NO\in \NN+\NN\in \NNI$$
+
+\section{Proportions}
+
+Let ``proportion'' be a type name.
+Let $\mathrm{prp} = \mathrm{proportion}$.
+Provided that $l$ is a list of integers;
+$1<\#l$,
+$\mathrm{q\ vec}\ l \ne 0$:
+$$\mathrm{prp}\ l$$
+is a proportion.
+An expression equivalent to $\mathrm{prp}(0, 0)$ is undefined.
+However, both
+$\mathrm{prp}(1, 0)$ and $\mathrm{prp}(0, 1)$
+are defined.
+
+\subsection{Equivalent Proportions}
+
+$$\mathrm{prp}(a\ b) = \mathrm{prp}(c\ d) \Leftrightarrow ad = bc$$
+
+\section{Vector Difference}
+
+Provided that $u$ anv $v$ are vectors of integers, $0<\#u=\#v=n$,
+$$u-v\equiv \mathrm{vec}(u_1 - v_1\en u_2 - v_2\en \ldots\en u_n - v_n)$$
+Provided that $u_k\in\NO$ and $v_k\in\NO$,
+$w_k\in\NI$,
+where $w=u-v$.
+
+\section{Vector Sum}
+
+Provided that $u$ anv $v$ are vectors of integers, $0<\#u=\#v=n$,
+$$u+v\equiv \mathrm{vec}(u_1 + v_1\en u_2 + v_2\en \ldots\en u_n + v_n)$$
+Provided that $u_k\in\NO$ and $v_k\in\NO$,
+$w_k\in\NI$,
+where $w=u+v$.
+
+\section{Differecnce between Points}
+
+$$\mathrm{point}(a\ b) - \mathrm{point}(c\ d)\equiv
+\mathrm{vec}(a - c\en b - d)$$
+Provided that $a, b, c, d\in \NO$; $a-c\in\NI$, $b-d\in\NI$.
+
+Again, for emphasis, the difference between points is a vector, not a point.
+
+\section{Sum of Two Points}
+$$\mathrm{point}(a\ b) + \mathrm{point}(c\ d)\equiv
+\mathrm{vec}(a + c\en b + d)$$
+Provided that $a, b, c, d\in \NO$; $a+c\in\NI$, $b+d\in\NI$.
+
+Again, for emphasis, the sum of points is a vector, not a point.
+
+\section{Array}
+Let ``array'' be a type name.
+Let $\mathrm{aa}=\mathrm{array}$\footnote{Mnemonic: ``aa'' is an array of a's.}.
+
+\subsection{Array Product}
+Let $u$ and $v$ be arrays, $0<\#u=\#v=n$.
+$$w=uv\Leftrightarrow w_i = u_iv_i, \forall\ 1\le i\le n$$
+
+\section{Pitch}
+
+Let ``pitch'' be a type name.
+
+\subsection{Pitch of two Points}
+
+Let $p$ and $r$ be points.
+$$\mathrm{pitch}(p\ r)\equiv \mathrm{pitch}(r_1-p_1\en p_2-r_2)$$
+In particular, $\mathrm{pitch}(0\ 1)$ is defined, whereas the hypothetical ``slope'' $\frac{1}{0}$ is not.
+
+Also, in particular,
+provided that $p_1, p_2, r_1, r_2\in \NO$;
+$m=\mathrm{pitch}(p\ r)$:
+$m_1, m_2\in \NI$.
+
+\subsection{Pitch-Quadrance}
+
+Let $p$ be a pitch. Then
+
+$$\mathrm{q}\ p\equiv \mathrm{q\ vec\ list}\ p$$
+
+\section{Distinct Points}
+
+Two points $p$ and $r$ are distinct if and only if
+$$\mathrm{q}\ s\ne 0$$
+where $s=r-p$.
+
+\section{P-Parallelograms}
+
+Let ``p-parallelogram'' be a type name.
+Let ppara $=$ p-parallelogram.
+Let $p$, $r$, $s$, and $t$ be points distinct from one another.
+Provided that
+$$\mathrm{pitch}(p\ r) = \mathrm{pitch}(t\ s)\ \mathrm{and}$$
+$$\mathrm{pitch}(r\ s) = \mathrm{pitch}(p\ t)$$
+$\mathrm{pppara}(p\ r\ s\ t)$ is defined.
+
+\section{Quadrance between Two Points}
+
+Let $p$ and $r$ be points. Let\footnote{Recall that $d$ is a vector.} $d = p - r$.
+$$\mathrm{q} (p\ r) \equiv \mathrm{q}\ d$$
+
+Provided that $p, r, s, t\in \NO: d\in\NI, \mathrm{q}\ d\in\NNII$
+
+\section{Lines and Half-Planes I}
+
+Let ``line,'' ``nplane,'' (inclusive half-plane) and ``xplane'' (exclusive half plane) be type names.
+
+Let $l=(c\ a\ b)$, $0<a^2+b^2$.
+
+\subsection{Pitch of Lines and Half-planes}
+
+$$\mathrm{pitch\ line}\ l\equiv \mathrm{pitch}(a\ b)$$
+$$\mathrm{pitch\ nplane}\ l\equiv \mathrm{pitch}(a\ b)$$
+$$\mathrm{pitch\ xplane}\ l\equiv \mathrm{pitch}(a\ b)$$
+
+\subsection{Dot Product of Vector with Line or Half-Plane}
+
+Let $v$ be a vector, $\#v=3$.
+Let $h$ be any one of $\mathrm{line}\ l$, $\mathrm{nplane}\ l$, or $\mathrm{xplane}\ l$.
+$$v\cdot h\equiv v\cdot \mathrm{vec\ list}\ h$$
+
+\subsection{Point on a Line}
+
+$$\mathrm{point}(x\ y)\in \mathrm{line}\ l\Leftrightarrow u\cdot l=0$$
+where
+$$u=\mathrm{vec}(1\ x\ y)$$
+
+\subsection{Point in a Half-Plane}
+
+$$\mathrm{point}(x\ y)\in \mathrm{xplane}\ l\Leftrightarrow u\cdot l  < 0$$
+$$\mathrm{point}(x\ y)\in \mathrm{nplane}\ l\Leftrightarrow u\cdot l\le 0$$
+where
+$$u=\mathrm{vec}(1\ x\ y)$$
+
+\section{Product of a Scalar and a Point}
+
+$$k\times \mathrm{point}(a\ b)\equiv \mathrm{vec}(ka\en kb)$$
+
+\section{Protocentroid of a P-Parallelogram}
+
+$$\mathrm{protocentroid\ ppara}(p\ r\ s\ t)\equiv p+s=r+t,$$
+where $p$, $r$, $s$, and $t$ are points.\footnote{Recall
+that the sum of two points is a vector.}
+
+Provided that
+$p_1, s_1\in\NO;$
+$(p + s)_1\in\NI$.
+
+\section{Determinant of Two Points}
+
+Let ``determinant'' be a type name.
+Let $\mathrm{det}=\mathrm{determinant}$.
+Let $p=(a\ b)$ and $r=(c\ d)$. Then
+$$\mathrm{det}(p\ r)\equiv \mathrm{det}(ad-bc).$$
+Provided that $a, b, c, d\in\NO;
+ad\in\NN, bc\in\NN;
+\mathrm{det}(p\ r)\in\NNI$.
+
+\section{Line through Two Points}
+
+Let $p$ and $r$ be distinct points.
+Let $l$ be the line passing through $p$ and $r$.
+Then
+$$l=\mathrm{line}(p_1r_2-p_2r_1\en p_2-r_2\en r_1-p_1)=$$
+$$=\mathrm{line}(\mathrm{det}(\mathrm{list}\ p\en \mathrm{list}\ r)\en p_2-r_2\en r_1-p_1)$$
+
+Provided that $p_1, p_2, r_1, r_2\in\NO,
+l_1\in\NNI, l_2\in\NI, l_3\in\NI$.
+
+\section{Line Amid Two P-Parallelograms}
+(See an accompanying paper for the definition of ``amid.'')
+
+Provided that $x$ and $y$ are lists of eight integers each and
+satisfy
+$$P\equiv \mathrm{ppara}(
+\mathrm{point}(x_1\en y_1)\
+\mathrm{point}(x_2\en y_2)\
+\mathrm{point}(x_3\en y_3)\
+\mathrm{point}(x_4\en y_4))$$
+and
+$$R\equiv \mathrm{ppara}(
+\mathrm{point}(x_5\en y_5)\
+\mathrm{point}(x_6\en y_6)\
+\mathrm{point}(x_7\en y_7)\
+\mathrm{point}(x_8\en y_8))$$
+The line $l$ amid each pair of diagonal-points of two p-parallelograms is
+%$$l=
+%\mathrm{line}(
+%x_{13}y_{57}-x_{57}y_{13}\en
+%2y_{13}-2y_{57}\en
+%2x_{57}-2y_{13})$$
+%where $x_{13}=x_1+x_3, y_{13}=y_1+y_3, x_{57}=x_5+x_7, y_{57}=y_5+y_7$.
+
+$$l=
+\mathrm{line}(
+ad-bc\en
+2b-2d\en
+2c-2a)$$
+where $a=x_1+x_3, b=y_1+y_3, c=x_5+x_7, d=y_5+y_7$.
+
+Provided that $x_k, y_k\in\NO$:
+$$l_1\in \NI\NI-\NI\NI\in \NNII-\NNII\in\mathbf{N_3^2}$$
+$$l_2, l_3\in 2\NI-2\NI\in \NII-\NII\in \NIII$$
+
+\section{Storage Requirements}
+The above considerations tolerate
+points with items $\in\NO$ and
+lines with zero-order terms $\in\NIII$ and
+first-order terms $\in\mathbf{N_3^2}$.
+
+Suppose our computing machinery accomodates words of
+$n+4$ bits\footnote{perhaps 64 bits per word},
+in which we store any value $\in\NIII$.
+Then\footnote{we might choose $n=60$.}
+$n$ corresponds with values in $\NO$.
+Two such words would have $2n+8$ bits,
+which is enough to store any value $\in\mathbf{N_8^2}$ and therefore
+any value $\in\mathbf{N_3^2}$.
+\end{document}
